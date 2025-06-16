@@ -6,6 +6,7 @@ import { Zoom } from "@mui/material";
 
 
 function CreateArea(props) {
+  console.log(props)
   // create a state to keep track of the content and title
   const [notes, setNotes] = useState({
     title: "",
@@ -42,7 +43,7 @@ function CreateArea(props) {
 
   return (
     <div>
-      <form className="create-note">
+      <form className={`create-note ${props.onMode ? "dark" : ""}`}>
       {/* true && something → shows something
       false && something → shows nothing */}
         {isTitleOpen && (<input 
@@ -50,6 +51,7 @@ function CreateArea(props) {
           name="title"
           placeholder="Title"
           value={notes.title}
+          className={props.onMode ? "dark" : ""}
          
         />)}
           
@@ -62,6 +64,7 @@ function CreateArea(props) {
           placeholder="Take a note..."
           rows={isTitleOpen ? 3 : 1}
           value={notes.content}
+          className={props.onMode ? "dark" : ""}
         />
         {isTitleOpen &&(<Zoom in = {true}>
           <Fab onClick={notetext}><AddIcon/></Fab>

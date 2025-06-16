@@ -33,7 +33,7 @@ function App() {
   return (
     <div className={`app-wrapper ${mode ? "dark" : ""}`} >
       <CssBaseline />
-      <Header onToggle = {modeToggle} />
+      <Header onMode={mode} onToggle = {modeToggle} />
       <main>
         <CreateArea onChange={addItem} onMode={mode}/>
       {items.map((item, index) => {
@@ -49,7 +49,7 @@ function App() {
         );
       })}
       </main>
-      <Footer />
+      <Footer onMode={mode}/>
     </div>
   );
 }

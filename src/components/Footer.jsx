@@ -1,9 +1,9 @@
 import React from "react";
 
-function Footer() {
+function Footer(props) {
   const year = new Date().getFullYear();
   return (
-    <footer>
+    <footer className={props.onMode ? "dark" : ""}>
       <p>Copyright ⓒ {year}</p>
     </footer>
   );

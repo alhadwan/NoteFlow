@@ -4,7 +4,7 @@ import ThemeToggle from "./ThemeToggle";
 
 function Header(props) {
   return (
-    <header >
+    <header className={props.onMode ? "dark" : ""}>
       <h1>
       <SpeakerNotesIcon/>
       NoteFlow

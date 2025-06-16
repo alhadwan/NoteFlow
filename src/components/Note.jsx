@@ -6,8 +6,9 @@ import CardContent from '@mui/material/CardContent';
 
 
 function Note(props) {
+  console.log(props)
   return (
-    <Card className="note">
+    <Card className={`note ${props.onMode ? "dark" : ""}`}>
       <h1>{props.title}</h1>
       <hr/>
       <br/>
@@ -17,6 +18,7 @@ function Note(props) {
         onClick={() => {
           return props.onDelete(props.id);
         }}
+        className={props.onMode ? "dark" : ""}
       >
        <DeleteIcon/>
       </button>

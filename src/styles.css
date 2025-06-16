@@ -23,8 +23,8 @@ main{
 }
 
 .dark{
-  background-color: black;
-  color: #fff;
+  background-color:#1e1e1e;
+  color: #f5f5f5;
 }
 
 header{
@@ -83,6 +83,12 @@ footer p {
   outline: none;
 }
 
+.note.dark {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+}
+
+
 form.create-note {
   position: relative;
   width: 480px;
@@ -115,4 +121,9 @@ form.create-note button {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   outline: none;
+}
+
+form.create-note.dark {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
 }
