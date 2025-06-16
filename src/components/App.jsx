@@ -7,24 +7,15 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 function App() {
-  // adding state to keep track of the noteitems array
+  
   const [items, setItems] = useState([]);
 
-  const[mode, setMode] = useState("light");
-
-  const theme = createTheme({
-    palette: {
-      mode: mode,
-    },
-  });
-
-
-    // this function helps passing the data from ->
-    //the CreateArea to app and the data to an array
+  const [mode, setMode] = useState(false);
+  
   function addItem(notes) {
     setItems((prevItems) => [...prevItems, notes]);
   }
-// delet the array notes using the id when Click on delet
+
   function deleteNote(id) {
     setItems((prevNotes) => {
       return prevNotes.filter((note, index) => {
@@ -33,13 +24,18 @@ function App() {
     });
   }
 
+  function modeToggle(){
+    setMode((prevMod)=>{
+      return !prevMod
+    })
+  }
+
   return (
-    <ThemeProvider theme={theme}>
+    <div className={`app-wrapper ${mode ? "dark" : ""}`} >
       <CssBaseline />
-      <Header mode={mode} setMode={setMode} />
-      {/* creating a prop to pass to the CreateArea */}
-      <CreateArea onChange={addItem} />
-      {/* looping through the array items and display them, in the h1 and p */}
+      <Header onToggle = {modeToggle} />
+      <main>
+        <CreateArea onChange={addItem} onMode={mode}/>
       {items.map((item, index) => {
         return (
           <Note
@@ -48,11 +44,13 @@ function App() {
             title={item.title}
             content={item.content}
             onDelete={deleteNote}
+            onMode={mode}
           />
         );
       })}
+      </main>
       <Footer />
-    </ThemeProvider>
+    </div>
   );
 }
 

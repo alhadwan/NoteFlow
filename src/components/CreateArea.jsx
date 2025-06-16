@@ -3,8 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Fab } from "@mui/material";
 import { Zoom } from "@mui/material";
 
-// const [content, setContent] = useState("");
-// const [title, setTitle] = useState("");
+
 
 function CreateArea(props) {
   // create a state to keep track of the content and title
@@ -19,11 +18,6 @@ function CreateArea(props) {
   function handelChange(event) {
     const { name, value } = event.target;
 
-        // if (name === "title") {
-    //   setTitle(value);
-    // } else if (name === "content") {
-    //   setContent(value);
-    // }
 
     setNotes((prevnote) => {
       return { ...prevnote, [name]: value };
@@ -59,8 +53,6 @@ function CreateArea(props) {
          
         />)}
           
-  
-        
         <textarea onClick = {()=>{
           console.log("Clicked!");
            setisTitleOpen(true);

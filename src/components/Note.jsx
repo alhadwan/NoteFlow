@@ -12,8 +12,7 @@ function Note(props) {
       <hr/>
       <br/>
       <p>{props.content}</p>
-      {/* //<p>{props.id}</p> */}
-      {/* //calling the onDelete function from the app */}
+
       <button
         onClick={() => {
           return props.onDelete(props.id);

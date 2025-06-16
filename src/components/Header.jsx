@@ -4,7 +4,7 @@ import ThemeToggle from "./ThemeToggle";
 
 function Header(props) {
   return (
-    <header>
+    <header >
       <h1>
       <SpeakerNotesIcon/>
       NoteFlow
