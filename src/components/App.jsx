@@ -9,11 +9,17 @@ import CssBaseline from "@mui/material/CssBaseline";
 function App() {
   
   const [items, setItems] = useState([]);
-
   const [mode, setMode] = useState(false);
   
-  function addItem(notes) {
-    setItems((prevItems) => [...prevItems, notes]);
+  
+  function addItem(notes, setError) {
+    if(notes.title.trim() === "" || notes.content.trim() === ""){
+      setError(true);
+    }else{
+      setItems((prevItems) => [...prevItems, notes]);
+      setError(false);
+    }
+    
   }
 
   function deleteNote(id) {
@@ -33,7 +39,7 @@ function App() {
   return (
     <div className={`app-wrapper ${mode ? "dark" : ""}`} >
       <CssBaseline />
-      <Header onMode={mode} onToggle = {modeToggle} />
+      <Header onMode={mode} onToggle={modeToggle} />
       <main>
         <CreateArea onChange={addItem} onMode={mode}/>
       {items.map((item, index) => {
