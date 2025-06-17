@@ -4,7 +4,7 @@ function Footer(props) {
   const year = new Date().getFullYear();
   return (
     <footer className={props.onMode ? "dark" : ""}>
-      <p>Copyright ⓒ {year}</p>
+      <p>Copyright ⓒ {year} NoteFlow</p>
     </footer>
   );
 }

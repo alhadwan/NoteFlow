@@ -6,39 +6,27 @@ import { Zoom } from "@mui/material";
 
 
 function CreateArea(props) {
-  console.log(props)
 
-  // create a state to keep track of the content and title
-  const [notes, setNotes] = useState({
+  const [userInput, setUserInput] = useState({
     title: "",
     content: "",
   });
-
   const [error, setError] = useState(false)
+  const[isTitleOpen, setIsTitleOpen] = useState(false);
 
-  const[isTitleOpen, setisTitleOpen] = useState(false);
-
-  // a function that handel/save the event of the user input
-  function handelChange(event) {
+  // handle/save the event of the user input
+  function handleChange(event) {
     const { name, value } = event.target;
-
-
-    setNotes((prevnote) => {
-      return { ...prevnote, [name]: value };
+    setUserInput((prevUserInput) => {
+      return { ...prevUserInput, [name]: value };
     });
   }
 
-
-
-// a function to pass the data to the app
-  function notetext(event) {
+  //pass the data to the app as props
+  function userInputHandler(event) {
     event.preventDefault();
-
-    //passing the function from the app using props
-    props.onChange(notes, setError);
-
-    // clear the input 
-    setNotes({
+    props.onChange(userInput, setError);
+    setUserInput({
       title: "",
       content: "",
     });
@@ -47,34 +35,31 @@ function CreateArea(props) {
   return (
     <div>
       <form className={`create-note ${props.onMode ? "dark" : ""}`}>
-      
         {isTitleOpen && (<input 
-          onChange={handelChange}
+          onChange={handleChange}
           name="title"
           placeholder="Title"
-          value={notes.title}
+          value={userInput.title}
           className={props.onMode ? "dark" : ""}
-         
         />)}
           
         <textarea onClick = {()=>{
           console.log("Clicked!");
-           setisTitleOpen(true);
+           setIsTitleOpen(true);
         }}
-          onChange={handelChange}
+          onChange={handleChange}
           name="content"
           placeholder="Take a note..."
           rows={isTitleOpen ? 2 : 1}
-          value={notes.content}
+          value={userInput.content}
           className={props.onMode ? "dark" : ""}
         />
 
         {error && <p style={{color: "red"}}>Please enter a note</p>}
 
         {isTitleOpen &&(<Zoom in = {true}>
-          <Fab onClick={notetext}><AddIcon/></Fab>
+          <Fab onClick={userInputHandler}><AddIcon/></Fab>
         </Zoom>)}
-        
       </form>
     </div>
   );

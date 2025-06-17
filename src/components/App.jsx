@@ -3,34 +3,34 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+
 
 function App() {
   
-  const [items, setItems] = useState([]);
+  const [notes, setNotes] = useState([]);
   const [mode, setMode] = useState(false);
   
-  
-  function addItem(notes, setError) {
-    if(notes.title.trim() === "" || notes.content.trim() === ""){
+ // Add note if title and content are not empty
+  function handleAddNotes(userInput, setError) {
+    if(userInput.title.trim() === "" || userInput.content.trim() === ""){
       setError(true);
     }else{
-      setItems((prevItems) => [...prevItems, notes]);
+      setNotes((prevItems) => [...prevItems, userInput]);
       setError(false);
     }
     
   }
-
+  // Delete note by index
   function deleteNote(id) {
-    setItems((prevNotes) => {
+    setNotes((prevNotes) => {
       return prevNotes.filter((note, index) => {
         return index !== id;
       });
     });
   }
-
-  function modeToggle(){
+  // Toggle dark/light mode
+  function toggleDarkMode(){
     setMode((prevMod)=>{
       return !prevMod
     })
@@ -39,10 +39,10 @@ function App() {
   return (
     <div className={`app-wrapper ${mode ? "dark" : ""}`} >
       <CssBaseline />
-      <Header onMode={mode} onToggle={modeToggle} />
+      <Header onMode={mode} onToggle={toggleDarkMode} />
       <main>
-        <CreateArea onChange={addItem} onMode={mode}/>
-      {items.map((item, index) => {
+        <CreateArea onChange={handleAddNotes} onMode={mode}/>
+      {notes.map((item, index) => {
         return (
           <Note
             key={index}
